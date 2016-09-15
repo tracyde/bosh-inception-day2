@@ -199,7 +199,7 @@ case $1 in
 
     cd /var/vcap/packages/gogs
 
-    HOME=${DATA_DIR} exec /var/vcap/packages/gogs/bin/gogs web --config /var/vcap/jobs/gogs_web/app.ini \
+    USER=vcap HOME=${DATA_DIR} exec /var/vcap/packages/gogs/bin/gogs web --config /var/vcap/jobs/gogs_web/app.ini \
       >>  $LOG_DIR/gogs_web.stdout.log \
       2>> $LOG_DIR/gogs_web.stderr.log
 
