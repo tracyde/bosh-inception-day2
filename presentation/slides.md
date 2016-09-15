@@ -192,14 +192,17 @@ case $1 in
 
   start)
     mkdir -p $RUN_DIR $LOG_DIR $DATA_DIR
-    mkdir -p ${DATA_DIR}/repositories
     chown -R vcap:vcap $RUN_DIR $LOG_DIR $DATA_DIR
 
     echo $$ > $PIDFILE
 
     cd /var/vcap/packages/gogs
 
-    USER=vcap HOME=${DATA_DIR} exec /var/vcap/packages/gogs/bin/gogs web --config /var/vcap/jobs/gogs_web/app.ini \
+    if [ ! -e /var/vcap/store/gogs_web/app.ini ]; then
+      cp /var/vcap/jobs/gogs_web/app.ini /var/vcap/store/gogs_web/app.ini
+    fi
+
+    USER=vcap HOME=${DATA_DIR} exec /var/vcap/packages/gogs/bin/gogs web --config /var/vcap/store/gogs_web/app.ini \
       >>  $LOG_DIR/gogs_web.stdout.log \
       2>> $LOG_DIR/gogs_web.stderr.log
 
