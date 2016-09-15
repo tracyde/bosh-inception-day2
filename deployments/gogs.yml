@@ -1,0 +1,33 @@
+---
+name: gogs
+
+# replace with `bosh status --uuid`
+director_uuid: REPLACE_ME
+
+# first need to upload the gogs releases
+releases:
+- name: gogs
+  version: latest
+
+stemcells:
+- alias: trusty
+  os: ubuntu-trusty
+  version: latest
+
+instance_groups:
+- name: gogs
+  instances: 1
+  vm_type: default
+  stemcell: trusty
+  azs: [z1]
+  networks: [{name: default}]
+  jobs:
+  - name: gogs_web
+    release: gogs
+
+update:
+  canaries: 1
+  max_in_flight: 1
+  serial: false
+  canary_watch_time: 1000-60000
+  update_watch_time: 1000-60000
