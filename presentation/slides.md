@@ -342,6 +342,12 @@ dependencies:
   - golang1.6
 
 files:
+  - github.com/**/*
+  - golang.org/**/*
+  - gopkg.in/**/*
+
+excluded_files:
+  - github.com/Unknwon/cae/tz/testdata/**/*
   - github.com/Unknwon/cae/tz/testdata/test.lnk
 ```
 
