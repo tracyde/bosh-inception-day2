@@ -1,6 +1,9 @@
 # Bosh Inception - Day 1
 
-[bosh-inception-day2](https://github.com/tracyde/bosh-inception-day2.git)
+bosh-inception-day2
+
+https://github.com/tracyde/bosh-inception-day2.git
+
 ---
 
 # Agenda
